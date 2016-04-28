@@ -6,6 +6,11 @@
     <script type="text/javascript">
 
 	function PostSessionValues() {
+		if ( $("#key01").val() == "" ) {
+			return;
+		}
+		var data = { };
+		data[$("#key01").val()] = $("#value01").val();
 		var settings = {
 		  "async": true,
 		  "crossDomain": true,
@@ -15,14 +20,14 @@
 			"cache-control": "no-cache",
 			"content-type": "application/x-www-form-urlencoded"
 		  },
-		  "data": {
-			"ALPHA": "ALPHA_VALUE " ,
-			"BETA": "BETA_VALUE  1461146872"
-		  }
+		  "data": data
 		}
 
 		$.ajax(settings).done(function (response) {
 		  console.log(response);
+		  $("#key01").val("");
+		  $("#value01").val("");
+			RefreshVariableDisplay();
 		});	
 	}
 
@@ -63,6 +68,14 @@
 			display: inline-block
 		}
 		
+		.ParamsContainer {
+			margin-top: 10px;
+		}
+		
+		.KeyValuePairContainer div {
+			display: inline-block
+		}
+		
 		.ControlContainer {
 			float: left;
 			width: 40%;
@@ -73,6 +86,7 @@
 			width: 55%;
 			border: 1px solid #000000;
 		}
+	
 	</style>
 </head>
 <body>
@@ -87,14 +101,21 @@
 <li>Single page app style - refresh section instead of page</li>
 </ul>
 <div class="CommandContainer" >
-<div  ><input type="button" value="Post Session Values" onclick="PostSessionValues()"></input></div>
-<div ><input type="button" value="Reload" onclick="javascript:RefreshVariableDisplay();"></input></div>
+	<div><input type="button" value="Post Session Values" onclick="PostSessionValues()"></input></div>
+	<div><input type="button" value="Reload" onclick="javascript:RefreshVariableDisplay();"></input></div>
+</div>
+<div class="ParamsContainer">
+<div id="kv_01" class="KeyValuePairContainer">
+	<div class="keyField" ><input id="key01" type="text" value="" ></input></div>
+	<div class="valueField" ><input id="value01" type="text" value="" ></input></div>
 </div>
 </div>
 
-<div class="DisplayContainer" >
-<div id="VariablesDisplay" >
 </div>
+
+<div class="DisplayContainer" >
+	<div id="VariablesDisplay" >
+	</div>
 </div>
 </body>
 </html>

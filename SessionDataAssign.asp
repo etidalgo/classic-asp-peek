@@ -25,9 +25,9 @@ Function ResolveType(strItem)
             ResolveType = strItem
     End Select
 End Function    
-%>
-<html>
-    <head></head>
-    <body></body>
 
-    </html>
+Function RemoveVariable( varKey )
+	Session.Contents.Remove(varKey)
+End Function
+
+%>
