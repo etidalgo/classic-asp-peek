@@ -3,16 +3,20 @@
 dim sessionVarName
 dim sessionVarValue
 
+dim command 
+	command = Request.QueryString("Cmd") & ""
     'Response.Write "SessionID: " & Session.SessionID & "<BR><BR>"
 If Request.ServerVariables("REMOTE_ADDR") = Request.ServerVariables("LOCAL_ADDR") then
     If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
         For Each strItem In Request.Form 
-            Session(strItem) = ResolveType( Request.Form(strItem) )
-            'Response.Write "Request.Form[" & strItem & "]: " & Request.Form(strItem) & "<BR>"
+			If (command = "Remove") Then 
+				Call RemoveVariable(strItem)
+			Else
+				Session(strItem) = ResolveType( Request.Form(strItem) )
+			End If
         Next 
     End If
 End If
-'Stop
 
 'Really need to post proper boolean data
 Function ResolveType(strItem)
@@ -24,7 +28,7 @@ Function ResolveType(strItem)
         Case Else
             ResolveType = strItem
     End Select
-End Function    
+End Function  
 
 Function RemoveVariable( varKey )
 	Session.Contents.Remove(varKey)

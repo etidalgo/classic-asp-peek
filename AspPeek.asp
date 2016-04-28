@@ -5,16 +5,11 @@
 	<script src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
     <script type="text/javascript">
 
-	function PostSessionValues() {
-		if ( $("#key01").val() == "" ) {
-			return;
-		}
-		var data = { };
-		data[$("#key01").val()] = $("#value01").val();
+	function PostSessionCommand( url, data) {
 		var settings = {
 		  "async": true,
 		  "crossDomain": true,
-		  "url": "./SessionDataAssign.asp",
+		  "url": url,
 		  "method": "POST",
 		  "headers": {
 			"cache-control": "no-cache",
@@ -24,11 +19,37 @@
 		}
 
 		$.ajax(settings).done(function (response) {
-		  console.log(response);
-		  $("#key01").val("");
-		  $("#value01").val("");
+			console.log(response);
 			RefreshVariableDisplay();
 		});	
+	}
+
+	function SetSessionValues() {
+		if ( $("#key01").val() == "" ) {
+			return;
+		}
+		var data = { };
+		data[$("#key01").val()] = $("#value01").val();
+		PostSessionCommand( "./SessionCmd.asp?cmd=Assign", data );
+
+		// Prefer execute on return from PostSessionCommand
+		$("#key01").val("");
+		$("#value01").val("");
+		
+	}
+
+	function RemoveSessionValue() {
+		if ( $("#key01").val() == "" ) {
+			return;
+		}
+		var data = { };
+		data[$("#key01").val()] = "";
+
+		PostSessionCommand( "./SessionCmd.asp?cmd=Remove", data );
+
+		// Prefer execute on return from PostSessionCommand
+		$("#key01").val("");
+		$("#value01").val("");
 	}
 
 	function RefreshVariableDisplay() {
@@ -39,6 +60,7 @@
 		RefreshVariableDisplay();
 		// setInterval( RefreshVariableDisplay, 5000);
 	});
+
 	</script>
 	<style>
 		.pageContent {
@@ -76,6 +98,15 @@
 			display: inline-block
 		}
 		
+		#VariablesDisplay {
+			height: 600px;
+			overflow: scroll;
+		}
+		
+		#VariablesDiv {
+			margin: 10px;
+		}
+		
 		.ControlContainer {
 			float: left;
 			width: 40%;
@@ -101,7 +132,8 @@
 <li>Single page app style - refresh section instead of page</li>
 </ul>
 <div class="CommandContainer" >
-	<div><input type="button" value="Post Session Values" onclick="PostSessionValues()"></input></div>
+	<div><input type="button" value="Post Session Values" onclick="SetSessionValues()"></input></div>
+	<div><input type="button" value="Clear Session Value" onclick="RemoveSessionValue()"></input></div>
 	<div><input type="button" value="Reload" onclick="javascript:RefreshVariableDisplay();"></input></div>
 </div>
 <div class="ParamsContainer">
