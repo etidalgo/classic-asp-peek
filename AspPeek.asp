@@ -56,73 +56,50 @@
 		$("#VariablesDisplay").load("./DataDump.asp");
 	}
 	
-	function TogglePreset() {
+	var UpdateKeyValue = function(container) {
+		var varKey = $(container).find(".keyField input").val();
+		var varValue = $(container).find(".valueField input").val();
+		// 
+		console.log("Key: " + varKey);
+		console.log("value: " + varValue);
+		var data = { };
+		data[varKey] = varValue;
+		PostSessionCommand( "./SessionCmd.asp?cmd=Assign", data );		
+	}
+	
+	var DisableKeyValue = function(container) {
+		var varKey = $(container).find(".keyField input").val();
+		var data = { };
+		data[varKey] = "";
+		PostSessionCommand( "./SessionCmd.asp?cmd=Remove", data );		
+	}
+	
+	var UpdatePreset = function() {
+		var container = $(this).closest(".KeyValuePairContainer");
+		UpdateKeyValue(container);
+	}
+	
+	var TogglePreset = function() {
+		var container = $(this).closest(".KeyValuePairContainer");
+		var isChecked = $(this).is(":checked");
+		$(container).find(".updateAction input[type=button]").prop("disabled", !isChecked);
+		if (isChecked) {
+			UpdateKeyValue(container);
+		} else {
+			DisableKeyValue(container);
+		}
 	}
 	
 	$(document).ready(function(){
 		RefreshVariableDisplay();
 		// setInterval( RefreshVariableDisplay, 5000);
-		$("div.checkField input[type=checkbox]").click(function() {});
+		$("div.checkField input[type=checkbox]").click(TogglePreset);
+		$("div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", true);
 	});
-
-	</script>
-	<style>
-		.pageContent {
-		
-		}
-		.header {
-		}
-		
-		.entry {
-			margin-left: 20px;
-			width: 700px;
-		}
-		
-		.entry div {
-			display: inline-block;			
-		}
-		.keyName {
-		}
-		
-		.keyValue {
-			color: blue;
-			margin-left: 50px;
-
-		}
-		
-		.CommandContainer div {
-			display: inline-block
-		}
-		
-		.ParamsContainer {
-			margin-top: 10px;
-		}
-		
-		.KeyValuePairContainer div {
-			display: inline-block
-		}
-		
-		#VariablesDisplay {
-			height: 600px;
-			overflow: scroll;
-		}
-		
-		#VariablesDiv {
-			margin: 10px;
-		}
-		
-		.ControlContainer {
-			float: left;
-			width: 40%;
-		}
-		
-		.DisplayContainer {
-			float: right;
-			width: 55%;
-			border: 1px solid #000000;
-		}
 	
-	</style>
+	</script>
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+
 </head>
 <body>
 <p>Helper for Classic ASP - Session and Application value dump</p>
@@ -149,8 +126,9 @@
 <div class="ParamsContainer">
 <div id="override_01" class="KeyValuePairContainer">
 	<div class="checkField" ><input id="override_check_01" type="checkbox" ></input></div>
-	<div class="keyField" ><input id="override_key_01" type="text" value="OverrideRecipient" readonly="readonly ></input></div>
-	<div class="valueField" ><input id="override_value_01" type="text" value="" ></input></div>
+	<div class="keyField" ><input id="override_key_01" type="text" value="OverrideRecipient" readonly="readonly" ></input></div>
+	<div class="valueField" ><input id="override_value_01" value="ernest@financenow.co.nz" type="text" ></input></div>
+	<div class="updateAction" ><input id="override_update_01" type="button" value="Update" ></input></div>
 </div>
 </div>
 

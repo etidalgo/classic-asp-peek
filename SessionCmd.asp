@@ -26,7 +26,7 @@ If Request.ServerVariables("REMOTE_ADDR") = Request.ServerVariables("LOCAL_ADDR"
     If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
         For Each strItem In Request.Form 
 		
-			Call CmdFunction( strItem, ResolveType(strItem) )
+			Call CmdFunction( strItem, ResolveType( Request.Form(strItem) ) )
 			With objJson.data
 				.Add strItem, ResolveType( Request.Form(strItem) )
 			End With			
