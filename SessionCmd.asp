@@ -1,22 +1,40 @@
+<!-- #include virtual="qik/util/asppeek/aspJSON1.17.asp" -->
 <%
-    'Session data assignment, limited to assigning strings. Will need a way to define non-string objects. 
-dim sessionVarName
-dim sessionVarValue
+'Usage: POST SessionCmd.asp
+'Session data assignment, limited to assigning strings. Will need a way to define non-string objects. 
+'Returns: JSON object
+'{
+'    "ALPHA": "ALPHA_VALUE  1462332824",
+'    "BETA": "BETA_VALUE  1462332824",
+'    "Key With Spaces": "Does this work?"
+'}
 
 dim command 
 	command = Request.QueryString("Cmd") & ""
-    'Response.Write "SessionID: " & Session.SessionID & "<BR><BR>"
+	
+dim CmdFunction	
+	If (command = "Remove") Then 
+		Set CmdFunction = GetRef ("Session_RemoveVariable")
+	Else
+		Set CmdFunction = GetRef ("Session_SetVariable")
+	End If	
+
+dim objJson
+	Set objJson = new aspJSON
+	
 If Request.ServerVariables("REMOTE_ADDR") = Request.ServerVariables("LOCAL_ADDR") then
     If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
         For Each strItem In Request.Form 
-			If (command = "Remove") Then 
-				Call RemoveVariable(strItem)
-			Else
-				Session(strItem) = ResolveType( Request.Form(strItem) )
-			End If
+		
+			Call CmdFunction( strItem, ResolveType(strItem) )
+			With objJson.data
+				.Add strItem, ResolveType( Request.Form(strItem) )
+			End With			
         Next 
     End If
 End If
+
+Response.Write objJson.JSONoutput()
 
 'Really need to post proper boolean data
 Function ResolveType(strItem)
@@ -30,7 +48,11 @@ Function ResolveType(strItem)
     End Select
 End Function  
 
-Function RemoveVariable( varKey )
+Function Session_SetVariable( varKey, varValue ) 
+	Session(varKey) = varValue
+End Function
+
+Function Session_RemoveVariable( varKey, bogusArg )
 	Session.Contents.Remove(varKey)
 End Function
 
