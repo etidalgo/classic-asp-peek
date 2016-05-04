@@ -1,4 +1,4 @@
-<!-- #include virtual="qik/util/asppeek/aspJSON1.17.asp" -->
+<!-- #include file="aspJSON1.17.asp" -->
 <%
 'Usage: POST SessionCmd.asp
 'Session data assignment, limited to assigning strings. Will need a way to define non-string objects. 

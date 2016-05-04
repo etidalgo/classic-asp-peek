@@ -1,4 +1,4 @@
-<!-- #include virtual="qik/util/asppeek/aspJSON1.17.asp" -->
+<!-- #include file="aspJSON1.17.asp" -->
 <%
 'Usage: POST SessionDataAssign.asp
 'Returns: JSON object

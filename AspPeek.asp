@@ -56,9 +56,13 @@
 		$("#VariablesDisplay").load("./DataDump.asp");
 	}
 	
+	function TogglePreset() {
+	}
+	
 	$(document).ready(function(){
 		RefreshVariableDisplay();
 		// setInterval( RefreshVariableDisplay, 5000);
+		$("div.checkField input[type=checkbox]").click(function() {});
 	});
 
 	</script>
@@ -134,12 +138,19 @@
 <div class="CommandContainer" >
 	<div><input type="button" value="Post Session Values" onclick="SetSessionValues()"></input></div>
 	<div><input type="button" value="Clear Session Value" onclick="RemoveSessionValue()"></input></div>
-	<div><input type="button" value="Reload" onclick="javascript:RefreshVariableDisplay();"></input></div>
+	<div><input type="button" value="Reload" onclick="RefreshVariableDisplay()"></input></div>
 </div>
 <div class="ParamsContainer">
 <div id="kv_01" class="KeyValuePairContainer">
 	<div class="keyField" ><input id="key01" type="text" value="" ></input></div>
 	<div class="valueField" ><input id="value01" type="text" value="" ></input></div>
+</div>
+</div>
+<div class="ParamsContainer">
+<div id="override_01" class="KeyValuePairContainer">
+	<div class="checkField" ><input id="override_check_01" type="checkbox" ></input></div>
+	<div class="keyField" ><input id="override_key_01" type="text" value="OverrideRecipient" readonly="readonly ></input></div>
+	<div class="valueField" ><input id="override_value_01" type="text" value="" ></input></div>
 </div>
 </div>
 
