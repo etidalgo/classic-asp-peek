@@ -7,9 +7,10 @@
 <label class="header">SessionID: <%=Session.SessionID%></label> <div> Updated: <%=FormatDateTime(Now)%> </div> 
 <BR><BR> 
 Auth_User: <%=Request.ServerVariables("AUTH_USER")%><BR><BR>
+REMOTE_ADDR: <%=Request.ServerVariables("REMOTE_ADDR")%><BR><BR>
+LOCAL_ADDR: <%=Request.ServerVariables("LOCAL_ADDR")%><BR><BR>
 
 <label class="header">Application Variables - <% =Application.Contents.Count %> Found</label><br><br>
-
 <%
 
 Dim keyName

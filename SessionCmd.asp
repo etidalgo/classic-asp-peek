@@ -21,8 +21,12 @@ dim CmdFunction
 
 dim objJson
 	Set objJson = new aspJSON
-	
-If Request.ServerVariables("REMOTE_ADDR") = Request.ServerVariables("LOCAL_ADDR") then
+
+'Need a way to filter questionable requests, maybe whitelist certain Session variables	
+'If Request.ServerVariables("REMOTE_ADDR") <> Request.ServerVariables("LOCAL_ADDR") then
+'	Response.End
+'End If	
+
     If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
         For Each strItem In Request.Form 
 		
@@ -32,7 +36,6 @@ If Request.ServerVariables("REMOTE_ADDR") = Request.ServerVariables("LOCAL_ADDR"
 			End With			
         Next 
     End If
-End If
 
 Response.Write objJson.JSONoutput()
 
