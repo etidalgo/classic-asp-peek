@@ -1,7 +1,11 @@
 <%@ Language=VBScript %>
+<%
+	'A utility to view and insert session variables
+	'Must be an ASP running in the same site as QIK to share the same session
+%>
 <html>
 <head>
-	<title>AspPeek - ASP Application and Session Data</title>
+	<title>AspPeek - ASP Application and Session Data Ver 0.1</title>
 	<script src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
     <script type="text/javascript">
 
@@ -35,7 +39,6 @@
 		// Prefer execute on return from PostSessionCommand
 		$("#key01").val("");
 		$("#value01").val("");
-		
 	}
 
 	function RemoveSessionValue() {
@@ -106,10 +109,10 @@
 <div class="ControlContainer">
 <p>Aims</p>
 <ul>
-<li>Batch session variables</li>
-<li>Click and edit</li>
+<li>Batch add session variables</li>
+<li>Click and edit session variables</li>
+<li>Delete session variables</li>
 <li>Improve formatting</li>
-<li>Delete</li>
 <li>Single page app style - refresh section instead of page</li>
 </ul>
 <div class="CommandContainer" >
@@ -125,12 +128,18 @@
 </div>
 
 <div class="ParamsContainer">
-<p>Overrides</p>
+<p>Overrides / Developer Features</p>
 <div id="override_01" class="KeyValuePairContainer">
 	<div class="checkField" ><input id="override_check_01" type="checkbox" ></input></div>
 	<div class="keyField" ><input id="override_key_01" type="text" value="DevEmailOverride" readonly="readonly" ></input></div>
 	<div class="valueField" ><input id="override_value_01" value="ernest@financenow.co.nz" type="text" ></input></div>
 	<div class="updateAction" ><input id="override_update_01" type="button" value="Update" ></input></div>
+</div>
+<div id="override_02" class="KeyValuePairContainer">
+	<div class="checkField" ><input id="override_check_02" type="checkbox" ></input></div>
+	<div class="keyField" ><input id="override_key_02" type="text" value="Dev_CCToMe" readonly="readonly" ></input></div>
+	<div class="valueField" ><input id="override_value_02" value="ernest@financenow.co.nz" type="text" ></input></div>
+	<div class="updateAction" ><input id="override_update_02" type="button" value="Update" ></input></div>
 </div>
 </div>
 

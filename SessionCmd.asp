@@ -11,7 +11,10 @@
 
 dim command 
 	command = Request.QueryString("Cmd") & ""
-	
+
+'Function pointers in classic asp
+'	asp classic - vbscript: getref with parameter - Stack Overflow <http://stackoverflow.com/questions/10741292/vbscript-getref-with-parameter>
+'GetRef Function <https://msdn.microsoft.com/en-us/library/ekabbe10%28v=vs.84%29.aspx?f=255&MSPPError=-2147217396>
 dim CmdFunction	
 	If (command = "Remove") Then 
 		Set CmdFunction = GetRef ("Session_RemoveVariable")
