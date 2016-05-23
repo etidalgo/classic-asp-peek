@@ -7,8 +7,11 @@
 <head>
 	<title>AspPeek - ASP Application and Session Data Ver 0.1</title>
 	<script src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
+	<script src="bzoCookie.js" ></script>
+	
     <script type="text/javascript">
 
+	// JavaScript Cookies <http://www.w3schools.com/js/js_cookies.asp>
 	function PostSessionCommand( url, data) {
 		var settings = {
 		  "async": true,
@@ -74,7 +77,8 @@
 		var varKey = $(container).find(".keyField input").val();
 		var data = { };
 		data[varKey] = "";
-		PostSessionCommand( "./SessionCmd.asp?cmd=Remove", data );		
+		PostSessionCommand( "./SessionCmd.asp?cmd=Remove", data );
+	
 	}
 	
 	var UpdatePreset = function() {
@@ -132,6 +136,7 @@
 <div id="override_01" class="KeyValuePairContainer">
 	<div class="checkField" ><input id="override_check_01" type="checkbox" ></input></div>
 	<div class="keyField" ><input id="override_key_01" type="text" value="DevEmailOverride" readonly="readonly" ></input></div>
+	<!-- default to DLR_EMAIL -->
 	<div class="valueField" ><input id="override_value_01" value="ernest@financenow.co.nz" type="text" ></input></div>
 	<div class="updateAction" ><input id="override_update_01" type="button" value="Update" ></input></div>
 </div>
@@ -143,6 +148,11 @@
 </div>
 </div>
 
+	<% 
+Response.Write "LOGON_USER: " & Request.ServerVariables("LOGON_USER") & "<br>"
+Response.Write "REMOTE_USER: " & Request.ServerVariables("REMOTE_USER") & "<br>"
+Response.Write "AUTH_USER: " & Request.ServerVariables("AUTH_USER") & "<br>"
+	%>
 </div>
 
 <div class="DisplayContainer" >
