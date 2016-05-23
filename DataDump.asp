@@ -7,6 +7,8 @@
 <label class="header">SessionID: <%=Session.SessionID%></label> <div> Updated: <%=FormatDateTime(Now)%> </div> 
 <BR><BR> 
 Auth_User: <%=Request.ServerVariables("AUTH_USER")%><BR><BR>
+LOGON_USER: <%=Request.ServerVariables("LOGON_USER")%><BR><BR>
+REMOTE_USER: <%=Request.ServerVariables("REMOTE_USER")%><BR><BR>
 REMOTE_ADDR: <%=Request.ServerVariables("REMOTE_ADDR")%><BR><BR>
 LOCAL_ADDR: <%=Request.ServerVariables("LOCAL_ADDR")%><BR><BR>
 
