@@ -29,6 +29,7 @@
 		var overrideEmail = "<%=overrideEmail%>";
 		var ccToMe = "<%=ccToMe%>";
 
+		
 	// JavaScript Cookies <http://www.w3schools.com/js/js_cookies.asp>
 	function PostSessionCommand( url, data) {
 		var settings = {
@@ -49,6 +50,7 @@
 		});	
 	}
 
+	// .append() | jQuery API Documentation <http://api.jquery.com/append/>
 	function SetSessionValues() {
 		if ( $("#key01").val() == "" ) {
 			return;
@@ -120,8 +122,8 @@
 		// setInterval( RefreshVariableDisplay, 5000);
 		$("div.checkField input[type=checkbox]").click(TogglePreset);
 		$("div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", true);
-		$("#override_value_01").prop("value", overrideEmail);
-		$("#override_value_02").prop("value", ccToMe);
+		$("#Dev_EmailOverride .valueField input").prop("value", overrideEmail);
+		$("#Dev_CCToMe .valueField input").prop("value", ccToMe);
 	});
 	
 	</script>
@@ -153,13 +155,13 @@
 
 <div class="ParamsContainer">
 <p>Overrides / Developer Features</p>
-<div id="override_01" class="KeyValuePairContainer">
+<div id="Dev_EmailOverride" class="KeyValuePairContainer">
 	<div class="checkField" ><input id="override_check_01" type="checkbox" ></input></div>
-	<div class="keyField" ><input id="override_key_01" type="text" value="DevEmailOverride" readonly="readonly" ></input></div>
+	<div class="keyField" ><input id="override_key_01" type="text" value="Dev_EmailOverride" readonly="readonly" ></input></div>
 	<div class="valueField" ><input id="override_value_01" value="" type="text" ></input></div>
 	<div class="updateAction" ><input id="override_update_01" type="button" value="Update" ></input></div>
 </div>
-<div id="override_02" class="KeyValuePairContainer">
+<div id="Dev_CCToMe" class="KeyValuePairContainer">
 	<div class="checkField" ><input id="override_check_02" type="checkbox" ></input></div>
 	<div class="keyField" ><input id="override_key_02" type="text" value="Dev_CCToMe" readonly="readonly" ></input></div>
 	<div class="valueField" ><input id="override_value_02" value="" type="text" ></input></div>
