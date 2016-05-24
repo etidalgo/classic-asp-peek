@@ -5,8 +5,8 @@
 	
 	'OverrideEmail value hierarchy - dealer email from Session, then override email value from cookie
 	Dim overrideEmail 
-	If Request.Cookies("DevEmailOverride") <> "" Then
-		overrideEmail = Request.Cookies("DevEmailOverride")
+	If Request.Cookies("Dev_EmailOverride") <> "" Then
+		overrideEmail = Request.Cookies("Dev_EmailOverride")
 	Else
 		overrideEmail = CStr(Session("DLR_EMAIL"))
 	End If
