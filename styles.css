@@ -22,7 +22,7 @@
 		}
 		
 		.CommandContainer div {
-			display: inline-block
+			display: inline-block;
 		}
 		
 		.ParamsContainer {
@@ -30,7 +30,8 @@
 		}
 		
 		.KeyValuePairContainer div {
-			display: inline-block
+			display: inline-block;
+			margin: 0 3px 0 3px;			
 		}
 		
 		#VariablesDisplay {
