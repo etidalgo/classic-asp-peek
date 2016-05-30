@@ -66,8 +66,11 @@
 			return;
 		}
 		var data = { };
-		data[$("#key01").val()] = $("#value01").val();
+		var newKey = $("#key01").val();
+		var newValue = $("#value01").val();
+		data[newKey] = newValue;
 		PostSessionCommand( "./SessionCmd.asp?cmd=Assign", data );
+		AddFeature( newKey, newValue );
 
 		// Prefer execute on return from PostSessionCommand
 		$("#key01").val("");
@@ -126,7 +129,7 @@
 			DisableKeyValue(container);
 		}
 	}
-	function AddFeatureElement( keyName, keyValue ) {	
+	function AddFeature( keyName, keyValue ) {	
 		var container = $("<div/>", { id: keyName, class: "KeyValuePairContainer" });
 		
 		container.append($("<div/>", { class: "checkField" }).append( $("<input/>", { type: "checkbox" }) ) );
@@ -144,8 +147,10 @@
 
 		$("#OverrideSection div.checkField input[type=checkbox]").click(TogglePreset);
 		$("#OverrideSection div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", true);
-		$("#Dev_EmailOverride .valueField input").prop("value", overrideEmail);
-		$("#Dev_CCToMe .valueField input").prop("value", ccToMe);
+		// $("#Dev_EmailOverride .valueField input").prop("value", overrideEmail);
+		// $("#Dev_CCToMe .valueField input").prop("value", ccToMe);
+		AddFeature("Dev_EmailOverride", overrideEmail);
+		AddFeature("Dev_CCToMe", ccToMe);
 	});
 	-->
 		</script>

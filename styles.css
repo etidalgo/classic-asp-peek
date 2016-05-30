@@ -1,55 +1,62 @@
-		.pageContent {
-		
-		}
-		.header {
-		}
-		
-		.entry {
-			margin-left: 20px;
-			width: 700px;
-		}
-		
-		.entry div {
-			display: inline-block;			
-		}
-		.keyName {
-		}
-		
-		.keyValue {
-			color: blue;
-			margin-left: 50px;
+body {
+	font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	/* line-height: 1.428571429; */
+	color: #333;
+}
 
-		}
-		
-		.CommandContainer div {
-			display: inline-block;
-		}
-		
-		.ParamsContainer {
-			margin-top: 10px;
-		}
-		
-		.KeyValuePairContainer div {
-			display: inline-block;
-			margin: 0 3px 0 3px;			
-		}
-		
-		#VariablesDisplay {
-			height: 600px;
-			overflow: scroll;
-		}
-		
-		#VariablesDiv {
-			margin: 10px;
-		}
-		
-		.ControlContainer {
-			float: left;
-			width: 45%;
-		}
-		
-		.DisplayContainer {
-			float: right;
-			width: 50%;
-			border: 1px solid #000000;
-		}
+.pageContent {
+
+}
+.header {
+}
+
+.entry {
+	margin-left: 20px;
+	width: 700px;
+}
+
+.entry div {
+	display: inline-block;			
+}
+.keyName {
+}
+
+.keyValue {
+	color: blue;
+	margin-left: 50px;
+
+}
+
+.CommandContainer div {
+	display: inline-block;
+}
+
+.ParamsContainer {
+	margin-top: 10px;
+}
+
+.KeyValuePairContainer div {
+	display: inline-block;
+	margin: 0 3px 0 3px;			
+}
+
+#VariablesDisplay {
+	height: 600px;
+	overflow: scroll;
+}
+
+#VariablesDiv {
+	margin: 10px;
+}
+
+.ControlContainer {
+	float: left;
+	width: 45%;
+}
+
+.DisplayContainer {
+	float: right;
+	width: 50%;
+	border: 1px solid #000000;
+}
