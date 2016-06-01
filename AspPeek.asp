@@ -1,7 +1,7 @@
 <%@ Language=VBScript %>
 <%
 	'A utility to view and insert session variables
-	'Must be an ASP running in the same site as QIK to share the same session
+	'Must be an ASP running in the same site as target application to share the same session
 	
 	'OverrideEmail value hierarchy - dealer email from Session, then override email value from cookie
 	Dim overrideEmail 
@@ -29,6 +29,7 @@
 			<!-- 
 		var overrideEmail = "<%=overrideEmail%>";
 		var ccToMe = "<%=ccToMe%>";
+		
 		var REFRESH_INTERVAL_SECONDS = 120;
 		var refreshIntervalId = 0; 
 
@@ -70,7 +71,7 @@
 		var newValue = $("#value01").val();
 		data[newKey] = newValue;
 		PostSessionCommand( "./SessionCmd.asp?cmd=Assign", data );
-		AddFeature( newKey, newValue );
+		AddSetting( newKey, newValue, true, true );
 
 		// Prefer execute on return from PostSessionCommand
 		$("#key01").val("");
@@ -129,7 +130,8 @@
 			DisableKeyValue(container);
 		}
 	}
-	function AddFeature( keyName, keyValue ) {	
+	
+	function AddSetting( keyName, keyValue, isActive, isRemovable ) {	
 		var container = $("<div/>", { id: keyName, class: "KeyValuePairContainer" });
 		
 		container.append($("<div/>", { class: "checkField" }).append( $("<input/>", { type: "checkbox" }) ) );
@@ -138,6 +140,8 @@
 		container.append($("<div/>", { class: "updateAction" }).append($("<input/>", { type:"button", value: "Update" })) );
 		container.appendTo("#OverrideSection");
 
+		container.find("div.checkField input[type=checkbox]").prop("checked", isActive).click(TogglePreset);
+		container.find("div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", !isActive);		
 		return container;
 	}	
 
@@ -145,13 +149,12 @@
 		RefreshVariableDisplay();
 		$("#RefreshView").change(ToggleRefresh);
 
-
 		// $("#Dev_EmailOverride .valueField input").prop("value", overrideEmail);
 		// $("#Dev_CCToMe .valueField input").prop("value", ccToMe);
-		AddFeature("Dev_EmailOverride", overrideEmail);
-		AddFeature("Dev_CCToMe", ccToMe);
+		AddSetting("Dev_EmailOverride", overrideEmail, false, false);
+		AddSetting("Dev_CCToMe", ccToMe, false, false);
 		$("#OverrideSection div.checkField input[type=checkbox]").click(TogglePreset);
-		$("#OverrideSection div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", true);		
+		$("#OverrideSection div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", true);
 	});
 	-->
 		</script>

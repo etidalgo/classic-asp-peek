@@ -12,20 +12,21 @@ body {
 }
 
 .entry {
-	margin-left: 20px;
-	width: 700px;
+	margin: 5px 0px 0px 20px;
+	/* width: 700px; */
 }
 
 .entry div {
 	display: inline-block;			
 }
 .keyName {
+	font-weight: bold;
 }
 
 .keyValue {
+	font-weight: normal;
 	color: blue;
 	margin-left: 50px;
-
 }
 
 .CommandContainer div {
@@ -38,7 +39,7 @@ body {
 
 .KeyValuePairContainer div {
 	display: inline-block;
-	margin: 0 3px 0 3px;			
+	margin: 0 1px;
 }
 
 #VariablesDisplay {
