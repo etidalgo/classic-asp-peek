@@ -145,12 +145,13 @@
 		RefreshVariableDisplay();
 		$("#RefreshView").change(ToggleRefresh);
 
-		$("#OverrideSection div.checkField input[type=checkbox]").click(TogglePreset);
-		$("#OverrideSection div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", true);
+
 		// $("#Dev_EmailOverride .valueField input").prop("value", overrideEmail);
 		// $("#Dev_CCToMe .valueField input").prop("value", ccToMe);
 		AddFeature("Dev_EmailOverride", overrideEmail);
 		AddFeature("Dev_CCToMe", ccToMe);
+		$("#OverrideSection div.checkField input[type=checkbox]").click(TogglePreset);
+		$("#OverrideSection div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", true);		
 	});
 	-->
 		</script>
@@ -185,18 +186,7 @@
 
 			<div id="OverrideSection" class="ParamsContainer">
 				<p>Overrides / Developer Features</p>
-				<div id="Dev_EmailOverride" class="KeyValuePairContainer">
-					<div class="checkField" ><input id="override_check_01" type="checkbox" ></input></div>
-					<div class="keyField" ><input id="override_key_01" type="text" value="Dev_EmailOverride" readonly="readonly" ></input></div>
-					<div class="valueField" ><input id="override_value_01" value="" type="text" ></input></div>
-					<div class="updateAction" ><input id="override_update_01" type="button" value="Update" ></input></div>
-				</div>
-				<div id="Dev_CCToMe" class="KeyValuePairContainer">
-					<div class="checkField" ><input id="override_check_02" type="checkbox" ></input></div>
-					<div class="keyField" ><input id="override_key_02" type="text" value="Dev_CCToMe" readonly="readonly" ></input></div>
-					<div class="valueField" ><input id="override_value_02" value="" type="text" ></input></div>
-					<div class="updateAction" ><input id="override_update_02" type="button" value="Update" ></input></div>
-				</div>
+
 			</div>
 
 		</div>
