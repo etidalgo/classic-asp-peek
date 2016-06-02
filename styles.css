@@ -8,15 +8,16 @@ body {
 .pageContent {
 
 }
+
 .header {
 }
 
-.entry {
+.ValueEntry {
 	margin: 5px 0px 0px 20px;
 	/* width: 700px; */
 }
 
-.entry div {
+.ValueEntry div {
 	display: inline-block;			
 }
 .keyName {

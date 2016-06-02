@@ -54,6 +54,20 @@ Function ResolveType(strItem)
     End Select
 End Function  
 
+
+'Runnable commands
+Function WrapperFunction( cmdFunc ) 
+    If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
+        For Each strItem In Request.Form 
+		
+			Call cmdFunc( strItem, ResolveType( Request.Form(strItem) ) )
+			With objJson.data
+				.Add strItem, ResolveType( Request.Form(strItem) )
+			End With			
+        Next 
+    End If
+End Function
+
 Function Session_SetVariable( varKey, varValue ) 
 	Session(varKey) = varValue
 End Function
@@ -62,4 +76,7 @@ Function Session_RemoveVariable( varKey, bogusArg )
 	Session.Contents.Remove(varKey)
 End Function
 
+Function Session_Reset() 
+	Session.Abandon
+End Function
 %>
