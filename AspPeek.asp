@@ -1,22 +1,9 @@
 <%@ Language=VBScript %>
+<!-- #include file="CustomSettings.asp" -->
+
 <%
 	'A utility to view and insert session variables
 	'Must be an ASP running in the same site as target application to share the same session
-	
-	'OverrideEmail value hierarchy - dealer email from Session, then override email value from cookie
-	Dim overrideEmail 
-	If Request.Cookies("Dev_EmailOverride") <> "" Then
-		overrideEmail = Request.Cookies("Dev_EmailOverride")
-	Else
-		overrideEmail = CStr(Session("DLR_EMAIL"))
-	End If
-
-	Dim ccToMe 
-	If Request.Cookies("Dev_CCToMe") <> "" Then
-		ccToMe = Request.Cookies("Dev_CCToMe")
-	Else
-		ccToMe = CStr(Session("DLR_EMAIL"))
-	End If	
 	
 %>
 <html>
@@ -27,8 +14,6 @@
 
 		<script type="text/javascript">
 			<!-- 
-		var overrideEmail = "<%=overrideEmail%>";
-		var ccToMe = "<%=ccToMe%>";
 		
 		var REFRESH_INTERVAL_SECONDS = 120;
 		var refreshIntervalId = 0; 
@@ -149,10 +134,11 @@
 		RefreshVariableDisplay();
 		$("#RefreshView").change(ToggleRefresh);
 
-		// $("#Dev_EmailOverride .valueField input").prop("value", overrideEmail);
-		// $("#Dev_CCToMe .valueField input").prop("value", ccToMe);
-		AddSetting("Dev_EmailOverride", overrideEmail, false, false);
-		AddSetting("Dev_CCToMe", ccToMe, false, false);
+		var customSettings = Local_CustomSettings();
+		for( var key in customSettings ) {
+			AddSetting( key, customSettings[key], false, false);
+		}
+		
 		$("#OverrideSection div.checkField input[type=checkbox]").click(TogglePreset);
 		$("#OverrideSection div.updateAction input[type=button]").click(UpdatePreset).prop("disabled", true);
 	});
@@ -175,16 +161,12 @@
 			<div id="ApplicationCommands" class="CommandContainer" >
 				<div><input type="button" value="Post Session Values" onclick="SetSessionValues()"></input></div>
 				<div><input type="button" value="Clear Session Value" onclick="RemoveSessionValue()"></input></div>
-				<div><input type="button" value="Reload" onclick="RefreshVariableDisplay()"></input></div>
 			</div>
 			<div class="ParamsContainer">
 				<div id="kv_01" class="KeyValuePairContainer">
 					<div class="keyField" ><input id="key01" type="text" value="" ></input></div>
 					<div class="valueField" ><input id="value01" type="text" value="" ></input></div>
 				</div>
-			</div>
-			<div id="ApplicationSettings" class="SettingsContainer" >
-				<div class="Setting" ><input id="RefreshView" type="checkbox" ></input><label for="RefreshView">Refresh View</label></div>
 			</div>
 
 			<div id="OverrideSection" class="ParamsContainer">
@@ -195,6 +177,10 @@
 		</div>
 
 		<div class="DisplayContainer" >
+				<div><input type="button" value="Refresh Variables Display" onclick="RefreshVariableDisplay()"></input></div>
+			<div id="ApplicationSettings" class="SettingsContainer" >
+				<div class="Setting" ><input id="RefreshView" type="checkbox" ></input><label for="RefreshView">Auto Refresh View</label></div>
+			</div>
 			<div id="VariablesDisplay" >
 			</div>
 		</div>
