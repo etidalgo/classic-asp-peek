@@ -45,11 +45,11 @@ body {
 
 #VariablesDisplay {
 	height: 600px;
-	overflow: scroll;
 }
 
 #VariablesDiv {
 	margin: 10px;
+	height: 100%;
 }
 
 .ControlContainer {
@@ -61,4 +61,9 @@ body {
 	float: right;
 	width: 50%;
 	border: 1px solid #000000;
+}
+
+.ValueBlock {
+	height: 200px;
+	overflow: scroll;
 }

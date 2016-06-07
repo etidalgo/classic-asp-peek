@@ -177,9 +177,11 @@
 		</div>
 
 		<div class="DisplayContainer" >
+			<div class="ControlContainer" >
 				<div><input type="button" value="Refresh Variables Display" onclick="RefreshVariableDisplay()"></input></div>
-			<div id="ApplicationSettings" class="SettingsContainer" >
-				<div class="Setting" ><input id="RefreshView" type="checkbox" ></input><label for="RefreshView">Auto Refresh View</label></div>
+				<div id="ApplicationSettings" class="SettingsContainer" >
+					<div class="Setting" ><input id="RefreshView" type="checkbox" ></input><label for="RefreshView">Auto Refresh View</label></div>
+				</div>
 			</div>
 			<div id="VariablesDisplay" >
 			</div>
